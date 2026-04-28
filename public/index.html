@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find a Tutor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="header-tag">Tutor Booking</div>
+      <h1>Find your <em>perfect</em><br>tutor today</h1>
+      <p>Browse verified tutors and book a session in seconds. No registration, no hassle.</p>
+    </div>
+  </header>
+
+  <main>
+    <div class="section-label">Available tutors</div>
+    <div id="tutor-list"><p class="loading">Loading tutors…</p></div>
+  </main>
+
+  <!-- Booking modal -->
+  <div id="modal-overlay" class="hidden">
+    <div id="modal">
+      <div class="modal-tag">Book a session</div>
+      <h2>Request lesson</h2>
+      <p id="modal-tutor-name"></p>
+      <div class="field">
+        <label>Your name</label>
+        <input type="text" id="input-name" placeholder="Full name">
+      </div>
+      <div class="field">
+        <label>Phone number</label>
+        <input type="tel" id="input-phone" placeholder="+7 777 000 0000">
+      </div>
+      <div id="modal-message"></div>
+      <div class="modal-actions">
+        <button id="btn-submit">Send request</button>
+        <button id="btn-cancel">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

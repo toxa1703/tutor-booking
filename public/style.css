@@ -1,0 +1,245 @@
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --ink:#0f0e0c;
+  --paper:#faf8f3;
+  --cream:#f0ede4;
+  --gold:#c8a84b;
+  --gold-light:#e8d9a0;
+  --muted:#7a7570;
+  --card:#ffffff;
+  --border:#e0dbd0;
+}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  min-height:100vh;
+}
+
+/* ── HEADER ── */
+header{
+  background:var(--ink);
+  color:var(--paper);
+  padding:60px 32px 52px;
+  position:relative;
+  overflow:hidden;
+}
+header::before{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 80% at 80% 50%, #2a2620 0%, transparent 70%);
+  pointer-events:none;
+}
+header::after{
+  content:'';
+  position:absolute;
+  top:-50px;right:-50px;
+  width:250px;height:250px;
+  border-radius:50%;
+  border:1px solid rgba(200,168,75,0.15);
+  pointer-events:none;
+}
+.header-inner{
+  position:relative;
+  max-width:860px;
+  margin:0 auto;
+}
+.header-tag{
+  display:inline-block;
+  font-size:11px;letter-spacing:0.15em;text-transform:uppercase;
+  color:var(--gold);
+  border:1px solid rgba(200,168,75,0.4);
+  padding:4px 12px;border-radius:20px;
+  margin-bottom:20px;
+}
+header h1{
+  font-family:'DM Serif Display',serif;
+  font-size:clamp(2rem,5vw,3.2rem);
+  line-height:1.1;
+  margin-bottom:14px;
+}
+header h1 em{font-style:italic;color:var(--gold-light)}
+header p{
+  color:rgba(250,248,243,0.62);
+  font-size:1rem;font-weight:300;
+  max-width:440px;line-height:1.6;
+}
+
+/* ── MAIN ── */
+main{max-width:860px;margin:0 auto;padding:48px 24px 80px}
+
+.section-label{
+  font-size:11px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:28px;
+  display:flex;align-items:center;gap:12px;
+}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.loading{color:var(--muted);font-size:0.9rem}
+
+/* ── GRID ── */
+#tutor-list{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(250px,1fr));
+  gap:20px;
+}
+
+/* ── CARD ── */
+.tutor-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  transition:transform 0.22s cubic-bezier(.34,1.56,.64,1), box-shadow 0.22s;
+  animation:fadeUp 0.4s ease both;
+}
+.tutor-card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 16px 40px rgba(0,0,0,0.1);
+}
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(18px)}
+  to{opacity:1;transform:translateY(0)}
+}
+.tutor-card:nth-child(1){animation-delay:0.05s}
+.tutor-card:nth-child(2){animation-delay:0.12s}
+.tutor-card:nth-child(3){animation-delay:0.19s}
+.tutor-card:nth-child(4){animation-delay:0.26s}
+.tutor-card:nth-child(5){animation-delay:0.33s}
+.tutor-card:nth-child(6){animation-delay:0.40s}
+
+.card-img-wrap{
+  position:relative;
+  height:170px;
+  background:var(--cream);
+}
+.card-img-wrap img{
+  width:100%;height:100%;
+  object-fit:cover;display:block;
+}
+.card-subject{
+  position:absolute;top:10px;left:10px;
+  background:rgba(15,14,12,0.72);
+  backdrop-filter:blur(6px);
+  color:#fff;font-size:10px;letter-spacing:0.09em;text-transform:uppercase;
+  padding:3px 10px;border-radius:20px;
+  font-family:'DM Sans',sans-serif;
+}
+
+.card-body{padding:18px}
+.card-name{
+  font-family:'DM Serif Display',serif;
+  font-size:1.1rem;margin-bottom:6px;
+}
+.card-about{
+  font-size:0.82rem;color:var(--muted);
+  line-height:1.55;margin-bottom:16px;min-height:54px;
+}
+.card-footer{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card-rate{font-size:0.95rem;font-weight:500}
+.card-rate span{font-size:0.75rem;color:var(--muted);font-weight:300}
+
+.btn-book{
+  background:var(--ink);color:#fff;
+  border:none;border-radius:8px;
+  padding:8px 18px;font-size:0.82rem;font-weight:500;
+  cursor:pointer;
+  font-family:'DM Sans',sans-serif;
+  transition:background 0.15s, transform 0.12s;
+  white-space:nowrap;
+}
+.btn-book:hover{background:#2a2620}
+.btn-book:active{transform:scale(0.96)}
+
+/* ── MODAL ── */
+#modal-overlay{
+  position:fixed;inset:0;z-index:100;
+  background:rgba(15,14,12,0.52);
+  backdrop-filter:blur(4px);
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+  animation:fadeIn 0.15s ease;
+}
+#modal-overlay.hidden{display:none}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+#modal{
+  background:var(--paper);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:36px 32px;
+  width:100%;max-width:390px;
+  animation:slideUp 0.2s cubic-bezier(.34,1.56,.64,1);
+}
+@keyframes slideUp{
+  from{transform:translateY(24px);opacity:0}
+  to{transform:translateY(0);opacity:1}
+}
+
+.modal-tag{
+  font-size:10px;letter-spacing:0.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:8px;
+}
+#modal h2{
+  font-family:'DM Serif Display',serif;
+  font-size:1.5rem;margin-bottom:6px;
+}
+#modal-tutor-name{
+  color:var(--muted);font-size:0.88rem;
+  margin-bottom:24px;padding-bottom:20px;
+  border-bottom:1px solid var(--border);
+}
+
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
+.field label{
+  font-size:0.75rem;font-weight:500;
+  letter-spacing:0.06em;text-transform:uppercase;
+  color:var(--muted);
+}
+.field input{
+  padding:12px 14px;
+  border:1px solid var(--border);border-radius:10px;
+  font-size:0.95rem;font-family:'DM Sans',sans-serif;
+  background:var(--card);color:var(--ink);
+  transition:border-color 0.15s,box-shadow 0.15s;
+}
+.field input:focus{
+  outline:none;
+  border-color:var(--ink);
+  box-shadow:0 0 0 3px rgba(15,14,12,0.07);
+}
+
+#modal-message{
+  font-size:0.85rem;min-height:20px;
+  margin-bottom:16px;line-height:1.4;
+}
+.msg-success{color:#2a7a45}
+.msg-error{color:#b83030}
+
+.modal-actions{display:flex;gap:10px}
+#btn-submit{
+  flex:1;padding:13px;
+  background:var(--ink);color:#fff;
+  border:none;border-radius:10px;
+  font-size:0.9rem;font-weight:500;
+  font-family:'DM Sans',sans-serif;
+  cursor:pointer;
+  transition:background 0.15s;
+}
+#btn-submit:hover{background:#2a2620}
+#btn-cancel{
+  padding:13px 20px;
+  background:transparent;color:var(--muted);
+  border:1px solid var(--border);border-radius:10px;
+  font-size:0.9rem;font-family:'DM Sans',sans-serif;
+  cursor:pointer;transition:border-color 0.15s,color 0.15s;
+}
+#btn-cancel:hover{border-color:var(--ink);color:var(--ink)}
+
+@media(max-width:480px){
+  header{padding:40px 20px 36px}
+  main{padding:32px 16px 60px}
+  #modal{padding:28px 20px}
+}
